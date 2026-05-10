@@ -411,6 +411,126 @@
     }
     .notice.success { display: block; background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
     .notice.error { display: block; background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+    #authOverlay { background: rgba(15,23,42,0.72); }
+    #authOverlay .modal-close {
+      position: absolute; top: 12px; right: 12px; z-index: 140;
+      float: none; width: 34px; height: 34px; padding: 0; border-radius: 999px;
+      background: rgba(17,24,39,0.48); color: #fff;
+    }
+    .auth-card {
+      position: relative; width: min(920px, 100%); min-height: 520px; max-height: calc(100vh - 36px);
+      overflow: hidden; border-radius: 10px; background: #fff;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+    }
+    .auth-form-panel {
+      position: absolute; top: 0; height: 100%; width: 50%;
+      transition: all 0.6s ease-in-out;
+    }
+    .auth-form-panel form {
+      height: 100%; padding: 42px 50px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; background: #fff;
+    }
+    .auth-form-panel h2 {
+      margin-bottom: 16px; color: var(--ink); font-size: 30px; font-weight: 900;
+    }
+    .auth-helper {
+      margin: 0 0 16px; color: var(--muted); font-size: 13px; line-height: 1.45;
+    }
+    .auth-socials { display: flex; justify-content: center; gap: 10px; margin-bottom: 16px; }
+    .auth-social {
+      width: 40px; height: 40px; border: 1px solid #ddd; border-radius: 50%;
+      display: grid; place-items: center; background: #fff; color: #333;
+      font-size: 16px; font-weight: 900; transition: all 0.2s ease;
+    }
+    .auth-social:hover {
+      border-color: #ff4b2b; color: #ff4b2b; background: rgba(255,75,43,0.08);
+      box-shadow: 0 4px 12px rgba(255,75,43,0.25); transform: translateY(-2px) scale(1.05);
+    }
+    .auth-form-panel .field { width: 100%; margin-bottom: 10px; }
+    .auth-form-panel .field label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .auth-form-panel .field input {
+      border: 0; border-radius: 0; background: #eee; padding: 13px 15px;
+    }
+    .auth-form-panel .field input:focus {
+      outline: 2px solid rgba(255,75,43,0.25); border-color: transparent;
+    }
+    .auth-link {
+      margin: 8px 0 16px; border: 0; background: transparent; color: #333;
+      font-size: 14px; font-weight: 700;
+    }
+    .auth-submit {
+      width: auto; min-width: 150px; border: 1px solid #ff4b2b; border-radius: 20px;
+      padding: 12px 36px; background: #ff4b2b; color: #fff;
+      font-size: 12px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase;
+      transition: transform 80ms ease-in, background 0.2s ease;
+    }
+    .auth-submit:hover { background: #e63d20; }
+    .auth-submit:active, .auth-ghost:active { transform: scale(0.95); }
+    .auth-sign-in { left: 0; z-index: 2; }
+    .auth-sign-up { left: 0; opacity: 0; z-index: 1; }
+    .auth-card.right-panel-active .auth-sign-in { transform: translateX(100%); }
+    .auth-card.right-panel-active .auth-sign-up {
+      transform: translateX(100%); opacity: 1; z-index: 5; animation: authShow 0.6s;
+    }
+    @keyframes authShow {
+      0%, 49.99% { opacity: 0; z-index: 1; }
+      50%, 100% { opacity: 1; z-index: 5; }
+    }
+    .auth-overlay-container {
+      position: absolute; top: 0; left: 50%; width: 50%; height: 100%;
+      overflow: hidden; transition: transform 0.6s ease-in-out; z-index: 100;
+    }
+    .auth-card.right-panel-active .auth-overlay-container { transform: translateX(-100%); }
+    .auth-gradient {
+      position: relative; left: -100%; width: 200%; height: 100%;
+      background: linear-gradient(to right, #ff4b2b, #ff416c); color: #fff;
+      transform: translateX(0); transition: transform 0.6s ease-in-out;
+    }
+    .auth-card.right-panel-active .auth-gradient { transform: translateX(50%); }
+    .auth-overlay-panel {
+      position: absolute; top: 0; width: 50%; height: 100%;
+      padding: 0 44px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; transition: transform 0.6s ease-in-out;
+    }
+    .auth-overlay-panel h2 { margin: 0; color: #fff; font-size: 30px; font-weight: 900; }
+    .auth-overlay-panel p {
+      margin: 20px 0 30px; max-width: 270px; color: rgba(255,255,255,0.9);
+      font-size: 14px; line-height: 20px;
+    }
+    .auth-left { transform: translateX(-20%); }
+    .auth-card.right-panel-active .auth-left { transform: translateX(0); }
+    .auth-right { right: 0; transform: translateX(0); }
+    .auth-card.right-panel-active .auth-right { transform: translateX(20%); }
+    .auth-ghost {
+      border: 1px solid #fff; border-radius: 20px; padding: 12px 42px;
+      background: transparent; color: #fff; font-size: 12px; font-weight: 900;
+      letter-spacing: 1px; text-transform: uppercase;
+    }
+    .auth-otp-note { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+    @media (max-width: 760px) {
+      .auth-card { min-height: 680px; overflow-y: auto; }
+      .auth-form-panel {
+        position: relative; inset: auto; width: 100%; height: auto; min-height: 520px;
+        opacity: 1; transform: none !important; display: none;
+      }
+      .auth-card:not(.right-panel-active) .auth-sign-in,
+      .auth-card.right-panel-active .auth-sign-up { display: block; }
+      .auth-overlay-container {
+        position: relative; left: auto; width: 100%; height: auto; transform: none !important;
+      }
+      .auth-gradient {
+        left: auto; width: 100%; min-height: 160px; transform: none !important;
+        display: flex; flex-direction: column;
+      }
+      .auth-overlay-panel {
+        position: relative; width: 100%; min-height: 160px; padding: 24px;
+        transform: none !important; display: none;
+      }
+      .auth-card:not(.right-panel-active) .auth-right,
+      .auth-card.right-panel-active .auth-left { display: flex; }
+      .auth-form-panel form { padding: 44px 24px 28px; }
+    }
     .history-panel { display: none; }
     .history-panel.show { display: block; }
     .order-card {
@@ -894,44 +1014,74 @@
   </footer>
 
   <div class="overlay" id="authOverlay">
-    <div class="modal-card">
-      <div class="modal-top">
-        <button class="modal-close" onclick="closeModal('authOverlay')">x</button>
-        <h2 id="authTitle">Welcome Back</h2>
-        <p id="authSubtitle">Login to your Multicloud DevOps Veera Sir Naresh IT Store account</p>
-      </div>
-      <div class="modal-body">
-        <div class="form-tabs">
-          <button class="form-tab active" id="tab-login" onclick="switchTab('login')">Login</button>
-          <button class="form-tab" id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
-        </div>
-        <div id="loginForm">
-          <div id="loginStep1">
-            <div class="field"><label>Email</label><input type="email" id="loginEmail" placeholder="your@email.com"></div>
-            <div class="field"><label>Password</label><input type="password" id="loginPass" placeholder="Password"></div>
-            <button class="submit-btn" onclick="doLogin()">Login</button>
+    <div class="auth-card" id="authCard">
+      <button class="modal-close" onclick="closeModal('authOverlay')" aria-label="Close">x</button>
+      <button class="form-tab active" id="tab-login" onclick="switchTab('login')" style="display:none;">Login</button>
+      <button class="form-tab" id="tab-signup" onclick="switchTab('signup')" style="display:none;">Sign Up</button>
+      <span id="authTitle" style="display:none;">Welcome Back</span>
+      <span id="authSubtitle" style="display:none;">Login to your Multicloud DevOps Veera Sir Naresh IT Store account</span>
+
+      <div class="auth-form-panel auth-sign-up" id="signupForm">
+        <form action="#" onsubmit="event.preventDefault(); document.getElementById('signupStep2').style.display === 'block' ? doSignupOtp() : doSignup();">
+          <h2>Create Account</h2>
+          <div class="auth-socials" aria-label="Social signup options">
+            <a href="#" class="auth-social" aria-label="Facebook">f</a>
+            <a href="#" class="auth-social" aria-label="Google">G</a>
+            <a href="#" class="auth-social" aria-label="LinkedIn">in</a>
           </div>
-          <div id="loginStep2" style="display:none;">
-            <p style="margin-bottom:14px;color:var(--muted);font-size:14px;">Check your email for a 6-digit OTP</p>
-            <div class="field"><label>OTP Code</label><input type="text" id="loginOtp" placeholder="123456" maxlength="6" style="letter-spacing:6px;text-align:center;font-size:22px;font-weight:900;"></div>
-            <button class="submit-btn" onclick="doLoginOtp()">Verify OTP</button>
-          </div>
-          <div class="notice" id="loginNotice"></div>
-        </div>
-        <div id="signupForm" style="display:none;">
+          <p class="auth-helper">or use your email for registration</p>
           <div id="signupStep1">
-            <div class="field"><label>Username</label><input type="text" id="signupUser" placeholder="yourname123"></div>
-            <div class="field"><label>Full Name</label><input type="text" id="signupFull" placeholder="Your Full Name"></div>
-            <div class="field"><label>Email</label><input type="email" id="signupEmail" placeholder="your@email.com"></div>
-            <div class="field"><label>Password</label><input type="password" id="signupPass" placeholder="Min 8 chars, A-Z, 0-9, symbol"></div>
-            <button class="submit-btn" onclick="doSignup()">Send OTP</button>
+            <div class="field"><label>Username</label><input type="text" id="signupUser" placeholder="Username"></div>
+            <div class="field"><label>Full Name</label><input type="text" id="signupFull" placeholder="Name"></div>
+            <div class="field"><label>Email</label><input type="email" id="signupEmail" placeholder="Email"></div>
+            <div class="field"><label>Password</label><input type="password" id="signupPass" placeholder="Password"></div>
+            <button class="auth-submit" type="submit">Sign Up</button>
           </div>
           <div id="signupStep2" style="display:none;">
-            <p style="margin-bottom:14px;color:var(--muted);font-size:14px;">Check your email for a 6-digit OTP</p>
+            <p class="auth-otp-note">Check your email for a 6-digit OTP</p>
             <div class="field"><label>OTP Code</label><input type="text" id="signupOtp" placeholder="123456" maxlength="6" style="letter-spacing:6px;text-align:center;font-size:22px;font-weight:900;"></div>
-            <button class="submit-btn" onclick="doSignupOtp()">Create Account</button>
+            <button class="auth-submit" type="button" onclick="doSignupOtp()">Create Account</button>
           </div>
           <div class="notice" id="signupNotice"></div>
+        </form>
+      </div>
+
+      <div class="auth-form-panel auth-sign-in" id="loginForm">
+        <form action="#" onsubmit="event.preventDefault(); document.getElementById('loginStep2').style.display === 'block' ? doLoginOtp() : doLogin();">
+          <h2>Sign in</h2>
+          <div class="auth-socials" aria-label="Social login options">
+            <a href="#" class="auth-social" aria-label="Facebook">f</a>
+            <a href="#" class="auth-social" aria-label="Google">G</a>
+            <a href="#" class="auth-social" aria-label="LinkedIn">in</a>
+          </div>
+          <p class="auth-helper">or use your account</p>
+          <div id="loginStep1">
+            <div class="field"><label>Email</label><input type="email" id="loginEmail" placeholder="Email"></div>
+            <div class="field"><label>Password</label><input type="password" id="loginPass" placeholder="Password"></div>
+            <!-- <button class="auth-link" type="button">Forgot your password?</button> -->
+            <button class="auth-submit" type="submit">Sign In</button>
+          </div>
+          <div id="loginStep2" style="display:none;">
+            <p class="auth-otp-note">Check your email for a 6-digit OTP</p>
+            <div class="field"><label>OTP Code</label><input type="text" id="loginOtp" placeholder="123456" maxlength="6" style="letter-spacing:6px;text-align:center;font-size:22px;font-weight:900;"></div>
+            <button class="auth-submit" type="button" onclick="doLoginOtp()">Verify OTP</button>
+          </div>
+          <div class="notice" id="loginNotice"></div>
+        </form>
+      </div>
+
+      <div class="auth-overlay-container">
+        <div class="auth-gradient">
+          <div class="auth-overlay-panel auth-left">
+            <h2>Welcome Back to Multi Cloud DevOps Veera Sir Ecommerce Application</h2>
+            <p>To keep connected with us please login with your personal info</p>
+            <button class="auth-ghost" type="button" id="signIn" onclick="switchTab('login')">Sign In</button>
+          </div>
+          <div class="auth-overlay-panel auth-right">
+            <h2>Hello, Veera sir</h2>
+            <p>Enter your personal details and start journey with us</p>
+            <button class="auth-ghost" type="button" id="signUp" onclick="switchTab('signup')">Sign Up</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1406,8 +1556,7 @@
     }
 
     function switchTab(tab) {
-      document.getElementById("loginForm").style.display = tab === "login" ? "block" : "none";
-      document.getElementById("signupForm").style.display = tab === "signup" ? "block" : "none";
+      document.getElementById("authCard")?.classList.toggle("right-panel-active", tab === "signup");
       document.getElementById("tab-login").classList.toggle("active", tab === "login");
       document.getElementById("tab-signup").classList.toggle("active", tab === "signup");
       document.getElementById("authTitle").textContent = tab === "login" ? "Welcome Back" : "Create Account";

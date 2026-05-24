@@ -1,5 +1,3 @@
-
-
 resource "aws_db_instance" "rds" {
   allocated_storage      = 20
   identifier = "microservices-rds"
@@ -8,7 +6,7 @@ resource "aws_db_instance" "rds" {
   engine_version         = "8.4.8"
   instance_class         = "db.t3.micro"
   multi_az               = true
-  db_name                = "cloud"
+  db_name                = "mydb"
   username               = "admin"
   password               = "Cloud123"
   skip_final_snapshot    = true

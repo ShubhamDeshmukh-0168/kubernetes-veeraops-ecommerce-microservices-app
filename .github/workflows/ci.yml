@@ -9,8 +9,8 @@ on:
       - main
 
 env:
-  AWS_REGION: us-east-1
-  ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com
+  AWS_REGION: us-west-2
+  ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-west-2.amazonaws.com
   
   FRONTEND_SERVICES: "main appliances auto beauty books computers earphones electronics fashion food furniture googlegrocery googlemusic googlepay home mobiles sports toys two-wheelers"
   BACKEND_SERVICE: "backend"
